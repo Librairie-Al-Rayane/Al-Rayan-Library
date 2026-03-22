@@ -1,0 +1,609 @@
+
+body {
+  font-family: 'Tahoma', sans-serif;
+  background-color: #fdf4ec;
+  color: #333;
+  line-height: 1.6;
+  padding-right: 25px;
+  padding-top: 180px;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.header {
+ position: fixed;
+ top: 0;right: 0;left: 0;
+  background-color: #692418;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.highlight {
+  color: #d4a564;
+  font-weight: bold;
+}
+
+.section {
+  padding: 30px;
+}
+
+.section-title {
+  color: #692418;
+  margin-bottom: 20px;
+}
+
+.footer {
+  background-color: #692418;
+  color: #d4a564;
+  text-align: center;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+img {
+  max-width: 100%;
+  border: 3px solid #d4a564;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+p, li {
+  font-size: 22px;
+}
+
+#map {
+  color: #d4a564;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 250px;
+  height: 200px;
+  margin-top: -50px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+.sidebar {
+  height: 100%;
+  width: 60px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #692418;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  z-index: 10000000000004576500;
+}
+
+.sidebar:hover {
+  width: 180px;
+}
+
+.sidebar .ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .i {
+  display: flex;
+  align-items: center;
+  padding: 13px;
+}
+
+.sidebar .i a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #c6953a;
+  width: 100%;
+}
+
+.sidebar .i a i {
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.sidebar .i a span {
+  opacity: 0;
+  white-space: nowrap;
+  margin-right: 10px;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .i a span {
+  opacity: 1;
+}
+
+#home {
+  margin-top: 50px;
+}
+
+.i:hover i,
+.i:hover span {
+  color: #ffa600;
+}
+
+.srch {
+  width: 300px;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 70px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+}
+
+#detailImage {
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 10px;
+  max-width: 250px;
+  border: 1px solid #ccc;
+}
+
+#detailDescription {
+  font-weight: bold;
+  font-size: large;
+}
+
+@media (max-width: 979.98px) {
+  #detailImage {
+    max-width: 150px;
+  }
+  #detailDescription {
+    font-size: x-large;
+  }
+}
+
+#cardDetailModal .modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align: center;
+}
+
+#detailImage {
+  order: 1;
+}
+
+#cardDetailModal .modal-body > div.mt-3 {
+  flex: 1;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#detailTitle {
+  margin-top: -100px;
+  margin-bottom: 20px; 
+}
+
+#home{
+  margin-top: 70px;
+}
+
+/* زر القائمة في الشاشات الصغيرة */
+.sidebar-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #692418;
+  border: none;
+  z-index: 100;
+  cursor: pointer;
+}
+
+/* خلفية غامقة */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 1050;
+}
+
+/* الشريط الجانبي عند التفعيل في الشاشات الصغيرة */
+.sidebar.active {
+  width: 200px !important; /* أو العرض الذي تريده */
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index: 1100;
+  overflow-x: visible !important;
+}
+
+@media (max-width: 979.98px) {
+  .sidebar {
+    width: 0 !important;
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+    z-index: 9999999999;
+  }
+
+  body {
+    padding-right: -160px; /* مثل حجم الـ sidebar */
+}
+
+  .sidebar.active {
+    width: 200px !important;
+    overflow-x: visible !important;
+  }
+
+  /* تظهر النصوص (span) فقط عند وجود كلاس active */
+  .sidebar .i a span {
+    opacity: 0;
+    margin-right: 0;
+    padding: 0;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+  }
+
+  .sidebar.active .i a span {
+    opacity: 1;
+    margin-right: 10px;
+    padding: 5px 8px;
+  }
+
+  /* تباعد بين كل عنصر وآخر */
+  .sidebar.active .i {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 979.98px) {
+  .logo {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+  }
+
+  .srch {
+    width: 90% !important;
+    margin: 10px auto 30px auto !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .srch input {
+    width: 100% !important;
+    max-width: 350px;
+    border: 2px solid #d4a564;
+  }
+
+  #mainCardContainer {
+    justify-content: center !important;
+  }
+  .header {
+  position: fixed;
+  top: 0;right: 0;left: 0;
+  background-color: #692418;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  height: auto;
+}
+#margin{
+  margin-top: 120px;
+}
+}
+.call-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #d4a564;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.call-button:hover {
+  background-color: #c1913d;
+  color: white;
+}
+
+.call-link-mobile {
+  display: none !important;
+}
+
+@media (max-width: 979px) {
+  .call-link-mobile {
+    display: flex !important;
+  }
+}
+
+.sidebar {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: #692418;
+  z-index: 5999000 !important;
+  height: 100vh;         /* ارتفاع كامل */
+  overflow-y: auto;      /* تفعيل التمرير العمودي */
+}
+
+/* لو تريد مسافة 15px فقط بين الهيدر و العنوان */
+
+@media (max-width: 355px) {
+  .sidebar-toggle {
+  position: fixed;
+  top: 15px;
+  right: 1px;
+}
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;right: 0;left: 0;
+  height: auto;
+}
+@media (max-width: 371px) {
+  .gmail{
+    margin-right: -13px;
+    font-size: 18px;
+  }
+}
+
+.sidebar {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  height: 100vh;
+  background-color: #692418;
+  z-index: 5000 !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.4s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar {
+  scrollbar-width: none;
+}
+
+.sidebar:hover {
+  width: 200px;
+}
+
+html[dir="ltr"] .sidebar:hover {
+  width: 175px;
+}
+
+.sidebar.active {
+  width: 200px !important;
+  z-index: 5001 !important;
+}
+
+.sidebar .ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .i {
+  display: flex;
+  align-items: center;
+  padding: 13px 10px;
+}
+
+.sidebar .i a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fdd064;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.sidebar .i a i {
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.sidebar .i a span {
+  opacity: 0;
+  white-space: nowrap;
+  margin-right: 18px;
+  font-size: 17px;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.sidebar:hover .i a span {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== زر اللغة ===== */
+.lang-btn {
+  position: fixed;
+  top: 55px;
+  left: 30px !important;
+  background-color: #b98740 !important;
+  border: 1.5px solid #b98740;
+  color: #692418;
+  border-radius: 8px;
+  padding: 6px 35px !important;
+  transition: 0.3s;
+}
+
+.lang-btn:hover {
+  background: #b98740;
+  color: #fff;
+}
+
+.lang-btn:focus,
+.lang-btn:active {
+  background: #b98740 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* ===== مكان الزر ===== */
+.dropdown {
+  position: absolute;
+  top: 60px;
+}
+
+/* RTL (العربية) */
+html[dir="rtl"] .dropdown {
+  left: 50px;
+  right: auto;
+}
+
+/* LTR */
+html[dir="ltr"] .dropdown {
+  right: 50px;
+  left: auto;
+}
+
+/* ===== قائمة اللغات ===== */
+#lang {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  min-width: 150px;
+  text-align: center;
+}
+
+#lang li a:hover {
+    background-color: #c5c5c5;
+}
+
+/* ===== Responsive ===== */
+
+/* 📱 هواتف */
+@media (max-width: 575.98px) {
+
+.lang-btn {
+  position: fixed;
+  top: 55px;
+  left: 30px !important;
+  background-color: #b98740 !important;
+  border: 1.5px solid #b98740;
+  color: #692418;
+  border-radius: 8px;
+  padding: 6px 15px !important;
+  transition: 0.3s;
+}
+
+  html[dir="rtl"] .dropdown {
+    left: 40px;
+  }
+
+  html[dir="ltr"] .dropdown {
+    right: 40px;
+  }
+
+  .lang-btn {
+    padding: 6px 15px;
+  }
+}
+
+/* 📲 تابلت صغير */
+@media (min-width: 576px) and (max-width: 767.98px) {
+body {
+  font-family: 'Tahoma', sans-serif;
+  background-color: #fdf4ec;
+  color: #333;
+  line-height: 1.6;
+  padding-right: 25px;
+  padding-top: -110px !important;
+}
+.lang-btn {
+  position: fixed;
+  top: 55px;
+  left: 30px !important;
+  background-color: #b98740 !important;
+  border: 1.5px solid #b98740;
+  color: #692418;
+  border-radius: 8px;
+  padding: 6px 20px !important;
+  transition: 0.3s;
+}
+
+  html[dir="rtl"] .dropdown {
+    left: 50px;
+  }
+
+  html[dir="ltr"] .dropdown {
+    right: 30px;
+  }
+
+  .lang-btn {
+    padding: 6px 25px;
+  }
+}
+
+/* 💻 شاشات كبيرة */
+@media (min-width: 768px) {
+
+  html[dir="rtl"] .dropdown {
+    left: 50px;
+  }
+
+  html[dir="ltr"] .dropdown {
+    right: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+
+body {
+  font-family: 'Tahoma', sans-serif;
+  background-color: #fdf4ec;
+  color: #333;
+  line-height: 1.6;
+  padding-right: 25px;
+  padding-top: 10px;
+}
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+body {
+ margin-top: -510px;
+}
+}

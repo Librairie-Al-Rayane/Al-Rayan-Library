@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al-Rayan Library | مكتبة الريان</title>
+
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="img/logo.png" type="image/png">
+</head>
+
+<body>
+
+<!-- زر القائمة (موبايل) -->
+<button id="menuToggle" class="btn">
+  <i class="bi bi-list" style="font-size:1.8rem;"></i>
+</button>
+
+<!-- Sidebar -->
+<nav id="sidebarMenu">
+  <ul id="sidebar">
+    <div class="btn1">
+      <i id="li2" class="bi bi-patch-plus-fill"></i>
+    </div>
+    <div class="container mt-3">
+      <div class="btn1">
+        <i id="li4" class="bi bi-file-minus-fill"></i>
+      </div>
+      <div class="btn1">
+        <i id="li5" class="bi bi-pencil-square"></i>
+      </div>
+      <div class="btn1">
+        <a href="info.html"><i id="li6" class="bi bi-info-circle-fill"></i></a>
+      </div>
+    </div>
+  </ul>
+</nav>
+
+<!-- البحث -->
+<div class="srch-bar"></div>
+<div class="srch">
+  <input
+    type="text"
+    id="searchInput"
+    class="form-control"
+    placeholder="بحث..."
+    onkeyup="filterCards()"
+    style="width:250px; border:2px solid #d4a564;"
+  >
+</div>
+
+<!-- الكروت -->
+<div dir="ltr" class="container mt-5">
+  <div id="cardContainer" class="row g-3 justify-content-center"></div>
+</div>
+
+<!-- Modal تفاصيل -->
+<div class="modal fade" id="cardDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"
+        style="background-color:#793018; color:white; justify-content:center; position:relative;">
+        <h5 class="modal-title w-100 text-center" id="cardDetailModalLabel"></h5>
+        <button type="button" class="btn-close"
+          data-bs-dismiss="modal"
+          style="position:absolute; left:20px; top:20px; background-color:#ccc;">
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="detailImage" src="" alt="صورة" />
+        <div class="detail-text">
+          <p id="detailCategory" class="text-center text-muted"></p>
+          <h5 id="detailTitle" class="text-center"></h5>
+          <p id="detailPrice" class="text-center"></p>
+          <p id="detailDescription" class="text-center"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal إضافة -->
+<div class="modal fade" id="addCardModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">إضافة بطاقة جديدة</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="cardForm">
+          <div class="mb-3">
+            <label class="form-label">العنوان</label>
+            <input type="text" class="form-control" id="cardTitle" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الوصف</label>
+            <textarea class="form-control" id="cardDescription" rows="10" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الثمن</label>
+            <input type="number" class="form-control" id="price" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الفئة</label>
+            <select class="form-select" id="cardCategory" required>
+              <option value="">اختر الفئة</option>
+              <option value="روايات عربية">روايات عربية</option>
+              <option value="روايات فرنسية">روايات فرنسية</option>
+              <option value="روايات إنجليزية">روايات إنجليزية</option>
+              <option value="قصص +3 سنوات">قصص +3 سنوات</option>
+              <option value="قصص 3-6 سنوات">قصص 3-6 سنوات</option>
+              <option value="قصص 6-10 سنوات">قصص 6-10 سنوات</option>
+              <option value="القرآن المثمن">القرآن المثمن</option>
+              <option value="الكتب الدينية">الكتب الدينية</option>
+              <option value="كتب تنمية ذاتية">كتب تنمية ذاتية</option>
+              <option value="معاجم">معاجم</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الصورة</label>
+            <input type="file" class="form-control" id="cardImage" accept="image/*" required>
+          </div>
+          <button type="submit" id="add" class="btn">إضافة</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal تعديل -->
+<div class="modal fade" id="editCardModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">تعديل البطاقة</h5>
+        <button id="editCloseBtn" class="btn-close bg-light" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editCardForm">
+          <div class="mb-3">
+            <label class="form-label">العنوان</label>
+            <input type="text" class="form-control" id="editCardTitle">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الوصف</label>
+            <textarea class="form-control" id="editCardDescription" rows="10"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الثمن</label>
+            <input type="number" class="form-control" id="editPrice">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الفئة</label>
+            <select class="form-select" id="editCardCategory" required>
+              <option value="">اختر الفئة</option>
+              <option value="روايات عربية">روايات عربية</option>
+              <option value="روايات فرنسية">روايات فرنسية</option>
+              <option value="روايات إنجليزية">روايات إنجليزية</option>
+              <option value="قصص +3 سنوات">قصص +3 سنوات</option>
+              <option value="قصص 3-6 سنوات">قصص 3-6 سنوات</option>
+              <option value="قصص 6-10 سنوات">قصص 6-10 سنوات</option>
+              <option value="القرآن المثمن">القرآن المثمن</option>
+              <option value="الكتب الدينية">الكتب الدينية</option>
+              <option value="كتب تنمية ذاتية">كتب تنمية ذاتية</option>
+              <option value="معاجم">معاجم</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الصورة</label>
+            <input type="file" class="form-control" id="editCardImage" accept="image/*">
+          </div>
+          <button type="submit" class="btn">حفظ التعديل</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- رسالة لا توجد نتائج -->
+<div id="noResultsMessage"
+  style="display:none; text-align:center; margin-top:20px; font-size:1.2rem; color:#793018;">
+  لم نجد نتائج تطابق بحثك 🔍
+</div>
+
+<!-- Overlays -->
+<div id="overlay-delete"></div>
+<div id="editOverlay"></div>
+<div id="sidebarOverlay"></div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

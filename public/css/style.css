@@ -1,0 +1,989 @@
+/* ===== عام ===== */
+html, body {
+  overflow: auto;  
+  height: 100%;
+  scrollbar-width: none;  
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;  
+}
+
+/* Padding حسب navbar */
+body {
+  padding-top: 215px;
+}
+
+html[dir="ltr"] body {
+  padding-left: 80px;
+  padding-right: auto;
+}
+
+html[dir="rtl"] body {
+  padding-right: 80px; 
+}
+
+
+
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 180px;
+  background-color: #fff;
+}
+
+.navbar-brand img {
+  max-height: 100px;
+  height: auto;
+  z-index: 9999999 !important;
+}
+
+.search-input {
+  border: 1.5px solid #b98740;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 350px;
+  z-index: 99999 !important;
+}
+
+.search-input:focus {
+  border-color: #692418;
+  box-shadow: 0 0 5px rgba(185,135,64,0.5);
+}
+
+.search-col {
+  margin-right: 25px;
+}
+
+/* ===== Footer ===== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #692418;
+  padding: 8px 0;
+  text-align: center;
+  z-index: 1000;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-icons a {
+  width: 32px;
+  height: 32px;
+  background: #b98740;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.footer-icons a svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.footer-icons a:hover {
+  background: #eee;
+  color: #b98740;
+  transform: scale(1.15);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* ترتيب الأيقونات */
+.footer-icons a:nth-child(1) { order: 1; }
+.footer-icons a:nth-child(2) { order: 2; }
+.footer-icons a:nth-child(3) { order: 3; }
+.footer-icons a:nth-child(4) { order: 4; }
+.footer-icons a:nth-child(5) { order: 5; }
+.footer-icons a:nth-child(6) { order: 6; }
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  height: 100vh;
+  background-color: #692418;
+  z-index: 5000 !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.4s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar {
+  scrollbar-width: none;
+}
+
+.sidebar:hover {
+  width: 200px;
+}
+
+html[dir="ltr"] .sidebar:hover {
+  width: 175px;
+}
+
+.sidebar.active {
+  width: 200px !important;
+  z-index: 5001 !important;
+}
+
+.sidebar .ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .i {
+  display: flex;
+  align-items: center;
+  padding: 13px 10px;
+}
+
+.sidebar .i a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fdd064;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.sidebar .i a i {
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.sidebar .i a span {
+  opacity: 0;
+  white-space: nowrap;
+  margin-right: 18px;
+  font-size: 17px;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.sidebar:hover .i a span {
+  opacity: 1;
+}
+
+.i:hover i,
+.i:hover span {
+  color: #ffa600;
+}
+
+/* أول عنصر */
+#home {
+  margin-top: 70px;
+}
+
+/* ===== Sidebar حسب اللغة ===== */
+html[dir="ltr"] .sidebar {
+  left: 0;
+  right: auto;
+}
+
+html[dir="ltr"] .sidebar .i a {
+  flex-direction: row-reverse;
+}
+
+html[dir="ltr"] .sidebar .i a i {
+  margin-left: 5px;
+  margin-right: 0;
+  padding-left: 5px;
+}
+
+html[dir="rtl"] .sidebar .i a i {
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 5px;
+}
+
+.sidebar .i a span {
+  margin-right: 18px;
+  margin-left: 0;
+}
+
+html[dir="ltr"] .sidebar .i a span {
+  margin-left: 25px;
+  margin-right: 0;
+}
+
+/* ===== زر اللغة ===== */
+.lang-btn {
+  background: transparent;
+  border: 1.5px solid #b98740;
+  color: #692418;
+  border-radius: 8px;
+  padding: 6px 40px;
+  transition: 0.3s;
+}
+
+.lang-btn:hover {
+  background: #b98740;
+  color: #fff;
+}
+
+.lang-btn:focus,
+.lang-btn:active {
+  background: #b98740 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 575.98px) {
+
+  body {
+  padding-left: 80px;
+}
+
+  html[dir="ltr"] body {
+  padding-left: 0px;
+}
+
+  .sidebar { width: 0 !important; }
+
+  .navbar .row,
+  html[dir="ltr"] .navbar .row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-col,
+  html[dir="ltr"] .search-col {
+    margin: 0 !important;
+    width: 75%;
+    max-width: 350px;
+  }
+
+  html[dir="ltr"] .navbar-brand img {
+    margin-left: 60px !important;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+  }
+
+  html[dir="ltr"] .dropdown {
+    top: 60px;
+    right: 40px !important;
+    left: auto;
+  }
+
+  #lang {
+    position: absolute;
+    top: 100%;
+    left: 50% !important;
+    transform: translateX(-50%);
+    margin: 0;
+    min-width: 150px;
+    text-align: center;
+  }
+
+  .lang-btn { padding: 6px 15px; }
+
+
+
+  .navbar-brand img { margin-right: 0; margin-top: 0px; }
+
+    .navbar {
+        
+  box-shadow: -2px 0 3px #333;
+}
+
+}
+
+
+/* 576px - 767.98px */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+
+body{
+  padding-left: 100px !important;
+  padding-right: 0px !important;
+}
+
+html[dir="rtl"] body{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+  #cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center !important; /* توسيط أفقياً */
+    margin: 0 auto !important;           /* إزالة أي margin إضافي */
+    gap: 20px;
+    padding: 20px;
+  }
+
+  #lang {
+    position: absolute;
+    top: 100%;
+    left: 50% !important;
+    transform: translateX(-50%);
+    margin: 0;
+    min-width: 150px;
+    text-align: center;
+  }
+
+  .navbar .row {
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-col { margin: 0 !important; width: 75% !important; max-width: 350px; }
+
+  html[dir="rtl"] .navbar-brand img { margin-right: 30px !important; margin-top: 0px;}
+  html[dir="ltr"] .navbar-brand img { margin-right: 30px !important; margin-top: 0px;}
+
+  body { margin-right: 60px;}
+
+
+  html[dir="ltr"] .search-col { margin-left: 140px !important; }
+
+  .dropdown {
+    position: absolute;
+    top: 60px;
+    left: 50px;
+  }
+
+  html[dir="ltr"] .dropdown {
+    top: 60px;
+    right: 30px !important;
+    left: auto;
+  }
+
+  .lang-btn { padding: 6px 25px; }
+    .navbar {
+        
+  box-shadow: -2px 0 3px #333;
+}
+}
+
+/* >=768px */
+@media (min-width: 768px) {
+
+  .navbar .row {
+    justify-content: flex-start;
+    gap: 25px;
+  }
+
+  .navbar-brand img {
+    max-height: 100px;
+    height: auto;
+    position: absolute;
+    top: 25px;
+  }
+
+  .search-col { margin: 0; width: auto; }
+
+  .navbar-brand img { margin-right: 60px; }
+
+  html[dir="ltr"] .navbar-brand img { margin-left: 55px; }
+
+  .search-input {
+    position: absolute;
+    top: 60px;
+    right: 220px;
+  }
+
+  html[dir="ltr"] .search-input { left: 220px; right: auto; }
+
+  .dropdown {
+    position: absolute;
+    top: 60px;
+    left: 50px;
+  }
+
+    body {
+    padding-top: 215px !important;
+  }
+
+  html[dir="ltr"] .dropdown { top: 60px; right: 50px; left: auto; }
+
+  #lang {
+    position: absolute;
+    top: 100%;
+    left: 50% !important;
+    transform: translateX(-50%);
+    margin: 0;
+    min-width: 150px;
+    text-align: center;
+  }
+
+  .navbar {
+        
+  box-shadow: -2px 0 3px #333;
+}
+}
+
+/* ===== مودال التفاصيل ===== */
+#cardDetailModal .modal-content {
+  background-color: #fdf4ec;
+  border: 2px solid #d4a564;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+/* الهيدر */
+#cardDetailModal .modal-header {
+  background-color: #793018;
+  color: #fff;
+  justify-content: center;
+  position: relative;
+}
+
+#cardDetailModal .btn-close {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  background-color: #fff;
+}
+
+html[dir="ltr"] #cardDetailModal .btn-close {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  background-color: #fff;
+}
+
+/* البودي */
+#cardDetailModal .modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-height: 70vh;
+  overflow-y: auto;
+  gap: 15px;
+  padding: 20px;
+}
+
+/* الصورة */
+#detailImage {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+/* الفئة */
+
+
+/* العنوان */
+#detailTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+/* الثمن */
+#detailPrice {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* الوصف */
+#detailDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* ===== توسيط البطاقات ===== */
+#cardContainer {
+  display: flex;
+  flex-wrap: wrap;      /* باش تكسر السطر تلقائياً */
+  justify-content: center; /* توسيط أفقياً */
+  gap: 20px;            /* مسافة بين البطاقات */
+  padding: 20px;
+}
+
+html[dir="rtl"] #cardContainer {
+  display: flex;
+  flex-wrap: wrap;      /* باش تكسر السطر تلقائياً */
+  justify-content: center; /* توسيط أفقياً */
+  gap: 20px;            /* مسافة بين البطاقات */
+  padding: 20px;
+}
+
+html[dir="ltr"] #cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* توسيط أفقياً */
+  gap: 20px;
+  padding: 20px;
+}
+
+#detailDescription{
+  text-align: right !important;
+}
+
+@media (max-width: 767.98px) {
+
+  .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 200px;
+  background-color: #fff;
+}
+
+body {
+  padding-top: 215px !important;
+}
+
+}
+
+
+
+#categoryDropdown{
+  color: #793018;
+  padding: 6px 25px;
+  border-color: #692418;
+  border: 1.5px solid #b98740;
+  color: #692418;
+  border-radius: 8px;
+  padding: 6px 25px;
+  transition: 0.3s;
+  background-color: #fff;
+}
+
+#categoryDropdown:hover {
+  background: #b98740;
+  border: 1.5px solid #b98740;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 25px;
+  transition: 0.3s;
+}
+
+.active-red {
+  background: #b98740 !important;
+  border: 1.5px solid #b98740 !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 6px 25px !important;
+  transition: 0.3s !important;
+}
+
+html[dir="rtl"] #categoryDropdown{
+  position: fixed;
+  right: 90px !important;
+  top: 130px !important;
+  z-index: 999 !important;
+}
+
+html[dir="ltr"] #categoryDropdown{
+  position: fixed;
+  left: 70px !important;
+  top: 130px !important;
+  z-index: 999 !important;
+}
+
+#lang{
+  z-index: 999999999999999999 !important;
+}
+
+
+/* ===== أزرار الفلترة ===== */
+.filter-buttons {
+  display: flex;
+  gap: 10px;        /* مسافة بين الأزرار */
+}
+
+.filter-buttons button {
+  flex: 1;          /* يجعل الزر يمتلئ بنفس عرض الآخر */
+  padding: 8px 0;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+/* زر تطبيق */
+#applyFilter {
+  background-color: #b98740;
+  color: #fff;
+  border: none;
+}
+
+#applyFilter:hover {
+  background-color: #966d33; /* لون أغمق عند المرور */
+  color: #fff;
+}
+
+/* زر إلغاء */
+#resetFilter{
+  background-color: #fff; /* ذهبي عند المرور */
+  color: #793018;
+  border-color: #793018;
+}
+#resetFilter:hover {
+  background-color: rgb(122, 22, 22);
+  color: #fff;
+}
+
+
+
+
+#categoryDropdown + .dropdown-menu {
+  margin-left: 50% !important;  
+  margin-right: auto !important;             /* منتصف الزر */
+  transform: translateX(-50%) !important; /* تعويض نصف عرض القائمة */
+  top: calc(100% + 45px) !important;   /* أسفل الزر بمسافة صغيرة */
+  min-width: 260px;                    /* عرض ثابت للقائمة */
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+  body {
+  padding-top: 205px !important;
+}
+
+html[dir="rtl"] #categoryDropdown{
+  position: fixed;
+  right: 90px !important;
+  top: 60px !important;
+  z-index: 999 !important;
+}
+
+html[dir="ltr"] #categoryDropdown{
+  position: fixed;
+  left: 70px !important;
+  top: 60px !important;
+  z-index: 999 !important;
+}
+
+
+}
+
+
+@media (max-width: 575.98px) {
+
+html[dir="rtl"] #categoryDropdown{
+  position: fixed;
+  right: 20px !important;
+  top: 60px !important;
+  z-index: 999 !important;
+}
+
+html[dir="ltr"] #categoryDropdown{
+  position: fixed;
+  left: 20px !important;
+  top: 60px !important;
+  z-index: 999 !important;
+}
+
+
+}
+
+
+.highlight {
+  background-color: #d4a564; /* خلفية ذهبية */
+  color: #793018;            /* نص بني */
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.dropdown-menu{
+  z-index: 99999999999999999 !important;
+}
+
+/* ===== checkbox direction ===== */
+
+/* RTL (عادي) */
+/* ===== checkbox direction ===== */
+
+/* RTL (عادي) */
+html[dir="rtl"] .form-check {
+  display: flex;
+  flex-direction: row-reverse; /* checkbox يمين، النص يسار */
+  align-items: center;
+  gap: 40px;
+}
+
+html[dir="rtl"] .form-check-label {
+  text-align: right; /* محاذاة النص لليمين */
+  width: 100%;
+}
+
+/* LTR (عكس) */
+html[dir="ltr"] .form-check {
+  display: flex;
+  flex-direction: row-reverse; /* checkbox يسار، النص يمين */
+  align-items: center;
+  gap: 40px;
+}
+
+html[dir="ltr"] .form-check-label {
+  text-align: left; /* محاذاة النص لليسار */
+  width: 100%;
+}
+
+/* 🔥 إصلاح خاص بالهواتف الصغيرة */
+@media (max-width: 430px) {
+
+  body {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 180px !important; /* ارتفاع كافي قبل الفوتر */
+  }
+
+  #cardContainer {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    padding: 10px !important;
+    gap: 15px !important;
+  }
+
+  #cardContainer .card {
+    margin: 0 auto !important;
+  }
+
+  #categoryDropdown{
+    color: #793018;
+    border-color: #692418;
+    border: 1.5px solid #b98740;
+    border-radius: 8px;
+    padding: 6px 10px;
+    transition: 0.3s;
+    background-color: #fff;
+  }
+
+  html[dir="ltr"] #categoryDropdown{
+    font-size: 12px;
+    margin-left: -15px;
+  }
+
+  html[dir="ltr"] .lang-btn {
+    margin-right: -20px;
+  }
+
+  .active-red {
+    padding: 6px 10px !important;
+  }
+
+  #categoryDropdown:hover {
+  background: #b98740;
+  border: 1.5px solid #b98740;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: 0.3s;
+}
+
+
+  /* ===== أزرار الفلترة والفئات scrollable ===== */
+  .filter-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;               
+    max-width: 100%;
+    position: relative;
+    padding-bottom: 0;  /* مساحة البودي تكفي */
+  }
+
+  html[dir="rtl"] .dropdown-menu{
+    padding-bottom: 5px !important;
+  }
+
+  /* الفوتر يبقى ظاهر */
+  .footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+}
+
+  @media (max-width: 430px) {
+
+  /* رفع الفئات والأزرار فوق الفوتر */
+  .filter-buttons-container {
+    position: relative; 
+    z-index: 10;           /* أعلى من الفوتر */
+    margin-bottom: 70px;   /* المسافة التي تساوي تقريباً ارتفاع الفوتر */
+  }
+
+  /* إذا كان dropdown position absolute */
+  .dropdown-menu {
+    max-height: calc(100vh - 80px); /* يسمح بالتمرير بدون تغطية الفوتر */
+    overflow-y: auto;
+    margin-bottom: 0 !important;
+  }
+
+  /* الفوتر يبقى ثابت */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;   /* أقل من z-index للعناصر العلوية */
+  }
+
+}
+
+
+
+
+@media (min-width: 575.98px) {
+  
+ #categoryDropdown {
+  position: relative;   
+  display: inline-block;
+  z-index: 9999;
+}
+
+#categoryDropdown + .dropdown-menu {
+  position: absolute !important;
+  top: 115px !important;      /* أسفل الزر مباشرة */
+  margin-top: 5px;            /* مسافة بسيطة بين الزر والقائمة */
+  min-width: 260px;
+  text-align: right;             
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1.5px solid #b98740;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#categoryDropdown {
+  position: relative;   
+  display: inline-block;
+  z-index: 9999;
+}
+
+#categoryDropdown + .dropdown-menu {
+  position: absolute !important;
+  top: 115px !important;      /* أسفل الزر مباشرة */
+  margin-top: 5px;            /* مسافة بسيطة بين الزر والقائمة */
+  min-width: 260px;
+  text-align: right;             
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1.5px solid #b98740;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
+html[dir="rtl"] #categoryDropdown + .dropdown-menu {
+  right: 0 !important;     
+  left: auto !important;
+  text-align: right; 
+}
+
+html[dir="ltr"] #categoryDropdown + .dropdown-menu {
+  right: 0 !important;     
+  left: auto !important;
+  text-align: left; 
+}
+
+
+#categoryDropdown + .dropdown-menu .form-check {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 5px;
+}
+
+#categoryDropdown + .dropdown-menu .form-check-label {
+  width: 100%;
+  text-align: inherit; 
+}
+
+
+#categoryDropdown + .dropdown-menu .btn {
+  flex: 1;
+  margin-top: 5px;
+}
+
+.footer{
+  z-index: 5px;
+}
+
+} 
+@media (min-width: 575px) and (max-width:768px) {
+  #categoryDropdown + .dropdown-menu {
+    position: absolute !important;
+    top: 45px !important; 
+  min-width: 260px;
+  text-align: right;             
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1.5px solid #b98740;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+}
+
+@media (max-width:575.98px) {
+  #categoryDropdown + .dropdown-menu {
+  position: absolute !important;
+  top: 45px !important; 
+  right: 0px !important;
+  min-width: 260px;
+  text-align: right;             
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1.5px solid #b98740;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.footer{
+  z-index: 5;
+}
+}
+
+
+
+
+
+
+
+
+
